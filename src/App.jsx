@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import profileImg from './assets/profile.png';
-import {  
-  Mail, Phone, ExternalLink, Download, Moon, Sun,  
-  ChevronRight, Award, BookOpen, Code2, Palette,  
+import {
+  Mail, Phone, ExternalLink, Download, Moon, Sun,
+  ChevronRight, Award, BookOpen, Code2, Palette,
   Globe, Cpu, ArrowUpRight, Link, Zap, Star, Briefcase,
   Menu, X
 } from 'lucide-react';
@@ -40,7 +40,7 @@ const PORTFOLIO_DATA = {
     {
       title: "Saudi Heritage Digital Experience",
       desc: "Redesigning the digital presence of Saudi Heritage sites with focus on user experience and engagement.",
-      tech: ["Figma","Prototyping","Research","Usability Testing",],
+      tech: ["Figma", "Prototyping", "Research", "Usability Testing",],
       link: "https://www.figma.com/proto/RQr3GmAzPt6EOcNAMkD8YT/%D8%B9%D8%B1%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%AA%D8%B1%D8%A7%D8%AB-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A?node-id=0-1&t=2NrsKWPB9xzH9I8Q-1",
       color: "from-blue-500 to-green-500"
     }
@@ -138,28 +138,28 @@ const App = () => {
 
   return (
     <div className="min-h-screen w-full max-w-full bg-slate-950 text-slate-100 transition-colors duration-500 mesh-bg overflow-x-hidden relative">
-      
+
       {/* Progress Bar */}
       <motion.div className="fixed top-0 left-0 h-1 bg-sky-400 z-[95] origin-left w-full" style={{ scaleX }} />
-      
+
       {/* Navbar */}
       <nav className={`fixed top-0 left-0 right-0 z-[90] w-full transition-all duration-500 ${scrolled ? 'py-4 bg-slate-950/90 backdrop-blur-xl border-b border-white/5 shadow-2xl' : 'py-6 md:py-8 bg-transparent border-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center w-full">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }} 
-            animate={{ opacity: 1, x: 0 }} 
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
             className="text-2xl md:text-3xl font-black font-heading tracking-tighter cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             Kamaleldin<span className="text-sky-400">.</span>
           </motion.div>
-          
+
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-10">
             {navLinks.map(link => (
-              <a 
-                key={link.name} 
-                href={link.href} 
+              <a
+                key={link.name}
+                href={link.href}
                 className="text-sm font-medium opacity-60 hover:opacity-100 hover:text-sky-400 transition-all duration-300"
               >
                 {link.name}
@@ -168,13 +168,24 @@ const App = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-6">
-            <motion.a 
+            <motion.a
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              href={PORTFOLIO_DATA.socials.github} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="px-6 py-2.5 bg-white text-slate-950 rounded-full text-sm font-bold hover:bg-sky-400 hover:text-white transition-all duration-500 shadow-lg"
+              href={PORTFOLIO_DATA.socials.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="px-6 py-2.5 bg-slate-900 border border-slate-800 text-white rounded-full text-sm font-bold hover:bg-sky-400 hover:border-sky-400 transition-all duration-500 shadow-lg flex items-center gap-2"
+            >
+              <Link size={16} /> LinkedIn
+            </motion.a>
+            <motion.a
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              href={PORTFOLIO_DATA.socials.github}
+              target="_blank"
+              rel="noreferrer"
+              className="px-6 py-2.5 bg-white text-slate-950 rounded-full text-sm font-bold hover:bg-sky-400 hover:text-white transition-all duration-500 shadow-lg flex items-center gap-2"
             >
               GitHub
             </motion.a>
@@ -182,7 +193,7 @@ const App = () => {
 
           {/* Mobile Toggle Button */}
           {!isMenuOpen && (
-            <button 
+            <button
               onClick={() => setIsMenuOpen(true)}
               className="lg:hidden p-2 text-white hover:bg-white/10 rounded-2xl transition-all duration-300"
               aria-label="Open menu"
@@ -211,7 +222,7 @@ const App = () => {
                 <div className="text-2xl md:text-3xl font-black font-heading tracking-tighter">
                   Kamaleldin<span className="text-sky-400">.</span>
                 </div>
-                <button 
+                <button
                   onClick={() => setIsMenuOpen(false)}
                   className="p-3 text-white bg-white/5 hover:bg-white/10 rounded-2xl transition-all duration-300 border border-white/5"
                   aria-label="Close menu"
@@ -234,36 +245,41 @@ const App = () => {
                       onClick={() => setIsMenuOpen(false)}
                       className="group relative flex flex-col items-center"
                     >
-                      <span className="text-[9px] font-bold text-sky-400 tracking-[0.2em] mb-0.5 opacity-40 group-hover:opacity-100 transition-opacity uppercase">0{i+1}</span>
+                      <span className="text-[9px] font-bold text-sky-400 tracking-[0.2em] mb-0.5 opacity-40 group-hover:opacity-100 transition-opacity uppercase">0{i + 1}</span>
                       <span className="text-3xl md:text-4xl font-bold font-heading tracking-tight group-hover:text-sky-400 transition-all duration-300">
                         {link.name}
                       </span>
                     </motion.a>
                   ))}
                 </div>
-                
+
                 {/* Menu Footer */}
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="flex justify-center gap-5"
+                  className="w-full flex flex-col items-center"
                 >
-                  {[
-                    { icon: <Code2 size={20} />, href: PORTFOLIO_DATA.socials.github },
-                    { icon: <Globe size={20} />, href: PORTFOLIO_DATA.socials.linkedin },
-                    { icon: <Mail size={20} />, href: `mailto:${PORTFOLIO_DATA.email}` }
-                  ].map((item, idx) => (
-                    <a 
-                      key={idx}
-                      href={item.href} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      className="p-4 bg-white/5 border border-white/5 rounded-2xl hover:bg-sky-400/20 hover:border-sky-400/30 hover:text-sky-400 transition-all duration-500"
-                    >
-                      {item.icon}
-                    </a>
-                  ))}
+                  <div className="flex flex-row gap-1 w-full max-w-[180px] justify-center items-center">
+                    {[
+                      { icon: <Code2 size={18} />, label: "GitHub", href: PORTFOLIO_DATA.socials.github },
+                      { icon: <Link size={18} />, label: "LinkedIn", href: PORTFOLIO_DATA.socials.linkedin },
+                      { icon: <Mail size={18} />, label: "Email", href: `mailto:${PORTFOLIO_DATA.email}` }
+                    ].map((item, idx) => (
+                      <motion.a
+                        key={idx}
+                        whileHover={{ x: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center gap-3 p-4 bg-slate-900/50 border border-slate-800 text-slate-400 rounded-2xl hover:text-sky-400 hover:border-sky-400 transition-all duration-300"
+                      >
+                        {item.icon}
+                        <span className="text-sm font-bold tracking-wide uppercase">{item.label}</span>
+                      </motion.a>
+                    ))}
+                  </div>
                 </motion.div>
               </div>
             </motion.div>
@@ -278,9 +294,9 @@ const App = () => {
           <div className="hero-glow bottom-1/4 -right-20 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-500 pointer-events-none" />
 
           <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-20 items-center relative z-10">
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }} 
-              animate={{ opacity: 1, y: 0 }} 
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left"
             >
@@ -288,7 +304,7 @@ const App = () => {
                 <span className="w-2 h-2 bg-emerald-400 rounded-full animate-ping" />
                 Available for Innovation
               </div>
-              
+
               <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-bold font-heading leading-[1.1] md:leading-none tracking-tighter mb-8 md:mb-10">
                 Building <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400">
@@ -296,21 +312,21 @@ const App = () => {
                 </span> <br />
                 Interfaces.
               </h1>
-              
+
               <p className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed opacity-60 max-w-xl mb-10 md:mb-12">
                 I'm <span className="font-bold text-white">Kamaleldin Wasim</span>. Frontend Engineer & UI/UX Designer with a focus on Responsive Design and Semantic Web.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 md:gap-5 w-full sm:w-auto">
                 <a href="#work" className="btn-modern justify-center">View Projects <ArrowUpRight size={20} /></a>
                 <a href="mailto:kimowasim123@gmail.com" className="px-8 py-4 border border-slate-800 rounded-2xl font-bold hover:bg-slate-900 transition-all flex items-center justify-center gap-2">Contact Me</a>
               </div>
             </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }} 
-              animate={{ opacity: 1, scale: 1 }} 
-              transition={{ duration: 0.6 }} 
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
               className="relative order-1 lg:order-2"
             >
               <div className="relative aspect-square max-w-[320px] md:max-w-[500px] mx-auto group">
