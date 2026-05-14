@@ -338,7 +338,7 @@ const App = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-sky-400/20 to-purple-500/20 rounded-[2.5rem] md:rounded-[3.5rem] blur-2xl md:blur-3xl" />
                 <div className="relative h-full w-full bg-slate-900 rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-slate-800 shadow-2xl p-2 md:p-3">
                   <div className="h-full w-full rounded-[1.8rem] md:rounded-[2.5rem] overflow-hidden relative">
-                    <img src={profileImg} alt="Portrait" className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" />
+                    <img src={profileImg} alt="Portrait" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent flex items-end p-6 md:p-10 opacity-0 group-hover:opacity-100 transition-opacity">
                       <div className="text-white">
                         <p className="text-xl md:text-2xl font-bold font-heading">Kamaleldin Wasim</p>
