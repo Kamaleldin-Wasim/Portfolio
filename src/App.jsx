@@ -115,31 +115,19 @@ const ProjectCard = ({ project, index }) => (
 const App = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
-    
-    // Optimized loading experience - reduced for speed
-    const timer = setTimeout(() => setIsLoading(false), 800);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timer);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent scroll when menu or loader is open
+  // Prevent scroll when menu is open
   useEffect(() => {
-    if (isMenuOpen || isLoading) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isMenuOpen, isLoading]);
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
+  }, [isMenuOpen]);
 
   const navLinks = [
     { name: 'Work', href: '#work' },
@@ -151,36 +139,7 @@ const App = () => {
   return (
     <div className="min-h-screen w-full max-w-full bg-slate-950 text-slate-100 transition-colors duration-500 mesh-bg overflow-x-hidden relative">
       
-      {/* Preloader */}
-      <AnimatePresence>
-        {isLoading && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0, y: -100 }}
-            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center"
-          >
-            <motion.div 
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.4 }}
-              className="relative flex flex-col items-center"
-            >
-              <div className="text-4xl font-black font-heading tracking-tighter mb-4">
-                Kamaleldin<span className="text-sky-400">.</span>
-              </div>
-              <div className="w-48 h-[2px] bg-white/5 relative overflow-hidden rounded-full">
-                <motion.div 
-                  initial={{ x: '-100%' }}
-                  animate={{ x: '100%' }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-sky-400"
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Progress Bar */}
 
       {/* Progress Bar */}
       <motion.div className="fixed top-0 left-0 h-1 bg-sky-400 z-[70] origin-left w-full" style={{ scaleX }} />
