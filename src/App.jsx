@@ -123,8 +123,8 @@ const App = () => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     
-    // Optimized loading experience
-    const timer = setTimeout(() => setIsLoading(false), 1200);
+    // Optimized loading experience - reduced for speed
+    const timer = setTimeout(() => setIsLoading(false), 800);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -157,13 +157,13 @@ const App = () => {
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, y: -100 }}
-            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
             className="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center"
           >
             <motion.div 
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
               className="relative flex flex-col items-center"
             >
               <div className="text-4xl font-black font-heading tracking-tighter mb-4">
@@ -173,7 +173,7 @@ const App = () => {
                 <motion.div 
                   initial={{ x: '-100%' }}
                   animate={{ x: '100%' }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute inset-0 bg-sky-400"
                 />
               </div>
@@ -203,7 +203,7 @@ const App = () => {
               <a 
                 key={link.name} 
                 href={link.href} 
-                className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40 hover:opacity-100 hover:text-sky-400 transition-all duration-300"
+                className="text-sm font-medium opacity-60 hover:opacity-100 hover:text-sky-400 transition-all duration-300"
               >
                 {link.name}
               </a>
@@ -217,7 +217,7 @@ const App = () => {
               href={PORTFOLIO_DATA.socials.github} 
               target="_blank" 
               rel="noreferrer" 
-              className="px-6 py-2.5 bg-white text-slate-950 rounded-full text-[10px] font-black tracking-widest uppercase hover:bg-sky-400 hover:text-white transition-all duration-500 shadow-lg"
+              className="px-6 py-2.5 bg-white text-slate-950 rounded-full text-sm font-bold hover:bg-sky-400 hover:text-white transition-all duration-500 shadow-lg"
             >
               GitHub
             </motion.a>
