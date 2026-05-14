@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #38bdf8;
+  --color-secondary: #818cf8;
+  --color-accent: #f472b6;
+
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Default to Dark Mode Variables */
+    --bg-main: #030712;
+    --bg-card: #0f172a;
+    --text-main: #f8fafc;
+    --border-main: #1e293b;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    @apply font-body transition-colors duration-500 overflow-x-hidden antialiased;
+  }
+}
+
+@layer components {
+  .nav-glass {
+    @apply fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-all duration-300;
+    background-color: rgba(3, 7, 18, 0.8);
+    border-color: var(--border-main);
+  }
+
+  .hero-glow {
+    @apply absolute -z-10 blur-[120px] rounded-full opacity-30 animate-pulse;
+  }
+
+  .card-modern {
+    @apply relative p-8 rounded-3xl border bg-slate-900/40 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2;
+    border-color: var(--border-main);
+  }
+
+  .card-modern::before {
+    content: '';
+    @apply absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 -z-10;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56,189,248,0.15) 0%, transparent 80%);
+  }
+
+  .card-modern:hover::before {
+    @apply opacity-100;
+  }
+
+  .btn-modern {
+    @apply px-8 py-4 bg-primary text-white rounded-2xl font-bold transition-all hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] active:scale-95 flex items-center gap-2;
+  }
+
+  .text-glow {
+    @apply transition-all duration-500;
+  }
+
+  .text-glow:hover {
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-primary/20 hover:bg-primary/40 rounded-full; }
+
+/* Mesh Background */
+.mesh-bg {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.1) 0px, transparent 50%);
+}
