@@ -140,12 +140,10 @@ const App = () => {
     <div className="min-h-screen w-full max-w-full bg-slate-950 text-slate-100 transition-colors duration-500 mesh-bg overflow-x-hidden relative">
       
       {/* Progress Bar */}
-
-      {/* Progress Bar */}
-      <motion.div className="fixed top-0 left-0 h-1 bg-sky-400 z-[70] origin-left w-full" style={{ scaleX }} />
+      <motion.div className="fixed top-0 left-0 h-1 bg-sky-400 z-[95] origin-left w-full" style={{ scaleX }} />
       
       {/* Navbar */}
-      <nav className={`fixed top-0 left-0 right-0 z-[60] w-full transition-all duration-500 ${scrolled ? 'py-4 bg-slate-950/90 backdrop-blur-xl border-b border-white/5 shadow-2xl' : 'py-6 md:py-8 bg-transparent border-transparent'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-[90] w-full transition-all duration-500 ${scrolled ? 'py-4 bg-slate-950/90 backdrop-blur-xl border-b border-white/5 shadow-2xl' : 'py-6 md:py-8 bg-transparent border-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center w-full">
           <motion.div 
             initial={{ opacity: 0, x: -20 }} 

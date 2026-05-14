@@ -21,7 +21,7 @@
   body {
     background-color: var(--bg-main);
     color: var(--text-main);
-    @apply font-body transition-colors duration-500 overflow-x-hidden antialiased;
+    @apply font-body transition-colors duration-500 antialiased;
   }
 }
 
