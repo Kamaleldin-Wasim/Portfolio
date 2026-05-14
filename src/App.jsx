@@ -115,23 +115,31 @@ const ProjectCard = ({ project, index }) => (
 const App = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // Optimized loading experience
+    const timer = setTimeout(() => setIsLoading(false), 1200);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+    };
   }, []);
 
-  // Prevent scroll when menu is open
+  // Prevent scroll when menu or loader is open
   useEffect(() => {
-    if (isMenuOpen) {
+    if (isMenuOpen || isLoading) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isLoading]);
 
   const navLinks = [
     { name: 'Work', href: '#work' },
@@ -143,6 +151,37 @@ const App = () => {
   return (
     <div className="min-h-screen w-full max-w-full bg-slate-950 text-slate-100 transition-colors duration-500 mesh-bg overflow-x-hidden relative">
       
+      {/* Preloader */}
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, y: -100 }}
+            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-[100] bg-slate-950 flex flex-col items-center justify-center"
+          >
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative flex flex-col items-center"
+            >
+              <div className="text-4xl font-black font-heading tracking-tighter mb-4">
+                Kamaleldin<span className="text-sky-400">.</span>
+              </div>
+              <div className="w-48 h-[2px] bg-white/5 relative overflow-hidden rounded-full">
+                <motion.div 
+                  initial={{ x: '-100%' }}
+                  animate={{ x: '100%' }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-sky-400"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Progress Bar */}
       <motion.div className="fixed top-0 left-0 h-1 bg-sky-400 z-[70] origin-left w-full" style={{ scaleX }} />
       
@@ -263,7 +302,7 @@ const App = () => {
             <motion.div 
               initial={{ opacity: 0, y: 30 }} 
               animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
               className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left"
             >
               <div className="inline-flex items-center gap-3 px-4 py-2 bg-sky-400/10 border border-sky-400/20 rounded-2xl text-sky-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-8 md:mb-10">
@@ -290,9 +329,9 @@ const App = () => {
             </motion.div>
             
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }} 
+              initial={{ opacity: 0, scale: 0.95 }} 
               animate={{ opacity: 1, scale: 1 }} 
-              transition={{ duration: 1 }} 
+              transition={{ duration: 0.6 }} 
               className="relative order-1 lg:order-2"
             >
               <div className="relative aspect-square max-w-[320px] md:max-w-[500px] mx-auto group">
