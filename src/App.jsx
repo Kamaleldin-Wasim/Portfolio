@@ -245,48 +245,70 @@ const App = () => {
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
               className="fixed inset-0 bg-slate-950 z-[100] flex flex-col w-full h-screen overflow-hidden"
             >
+              {/* Background Glows */}
+              <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-sky-400/10 blur-[120px] rounded-full pointer-events-none" />
+              <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none" />
+
               {/* Menu Header */}
-              <div className="flex justify-between items-center px-6 py-6 md:px-10">
+              <div className="relative z-10 flex justify-between items-center px-6 py-6 md:px-10">
                 <div className="text-2xl md:text-3xl font-black font-heading tracking-tighter">
                   Kamaleldin<span className="text-sky-400">.</span>
                 </div>
                 <button 
                   onClick={() => setIsMenuOpen(false)}
-                  className="p-2 text-white hover:bg-white/10 rounded-2xl transition-all duration-300"
+                  className="p-3 text-white bg-white/5 hover:bg-white/10 rounded-2xl transition-all duration-300 border border-white/5"
                   aria-label="Close menu"
                 >
-                  <X size={32} strokeWidth={2.5} />
+                  <X size={28} strokeWidth={2.5} />
                 </button>
               </div>
 
-              {/* Menu Links */}
-              <div className="flex-1 flex flex-col justify-center items-center gap-6">
-                {navLinks.map((link, i) => (
-                  <motion.a
-                    key={link.name}
-                    href={link.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-4xl font-bold font-heading tracking-tighter hover:text-sky-400 transition-colors"
-                  >
-                    {link.name}
-                  </motion.a>
-                ))}
+              {/* Menu Content Group */}
+              <div className="relative z-10 flex-1 flex flex-col justify-start items-center pt-16 gap-10">
+                {/* Menu Links */}
+                <div className="flex flex-col items-center gap-4">
+                  {navLinks.map((link, i) => (
+                    <motion.a
+                      key={link.name}
+                      href={link.href}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="group relative flex flex-col items-center"
+                    >
+                      <span className="text-[9px] font-bold text-sky-400 tracking-[0.2em] mb-0.5 opacity-40 group-hover:opacity-100 transition-opacity uppercase">0{i+1}</span>
+                      <span className="text-3xl md:text-4xl font-bold font-heading tracking-tight group-hover:text-sky-400 transition-all duration-300">
+                        {link.name}
+                      </span>
+                    </motion.a>
+                  ))}
+                </div>
+                
+                {/* Menu Footer */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="flex justify-center gap-5"
+                >
+                  {[
+                    { icon: <Code2 size={20} />, href: PORTFOLIO_DATA.socials.github },
+                    { icon: <Globe size={20} />, href: PORTFOLIO_DATA.socials.linkedin },
+                    { icon: <Mail size={20} />, href: `mailto:${PORTFOLIO_DATA.email}` }
+                  ].map((item, idx) => (
+                    <a 
+                      key={idx}
+                      href={item.href} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="p-4 bg-white/5 border border-white/5 rounded-2xl hover:bg-sky-400/20 hover:border-sky-400/30 hover:text-sky-400 transition-all duration-500"
+                    >
+                      {item.icon}
+                    </a>
+                  ))}
+                </motion.div>
               </div>
-              
-              {/* Menu Footer */}
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="pb-20 flex justify-center gap-8"
-              >
-                <a href={PORTFOLIO_DATA.socials.github} target="_blank" rel="noreferrer" className="p-4 bg-slate-900 rounded-full hover:bg-sky-400/20 transition-colors"><Code2 /></a>
-                <a href={PORTFOLIO_DATA.socials.linkedin} target="_blank" rel="noreferrer" className="p-4 bg-slate-900 rounded-full hover:bg-sky-400/20 transition-colors"><Globe /></a>
-                <a href={`mailto:${PORTFOLIO_DATA.email}`} className="p-4 bg-slate-900 rounded-full hover:bg-sky-400/20 transition-colors"><Mail /></a>
-              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
