@@ -74,10 +74,11 @@ const PORTFOLIO_DATA = {
     focus: "Advanced Logic Systems, Algorithm Design, Semantic Web"
   },
   certifications: [
-    { title: "Meta Front-End Specialization", issuer: "Coursera" },
+    { title: "Meta Front-End Specialization", issuer: "Coursera", link: "https://coursera.org/share/ed941dde2dd91796c6d5a2e045b017d9" },
     { title: "NVIDIA AI for All", issuer: "NVIDIA" },
     { title: "UI/UX Design Diploma", issuer: "Route" },
-    { title: "React.js Training", issuer: "ITI" }
+    { title: "React.js Training", issuer: "ITI" },
+    { title: "Security, Compliance, and Identity Fundamentals", issuer: "Microsoft", link: "https://www.certiport.com/portal/pages/credentialverification.aspx", code: "Xp83-XMVS" }
   ],
   skills: {
     frontend: ["React.js", "JavaScript", "TypeScript", "Next.js", "Tailwind"],
@@ -436,15 +437,18 @@ const App = () => {
                 <Award className="text-sky-400" size={28} md:size={32} />
                 <h2 className="text-3xl md:text-4xl font-bold font-heading">Certifications</h2>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-4 auto-rows-[100px]">
                 {PORTFOLIO_DATA.certifications.map((cert, i) => (
-                  <div key={i} className="flex items-center justify-between p-5 md:p-6 bg-slate-900/40 border border-slate-800 rounded-2xl hover:border-sky-400/30 transition-colors">
+                  <a href={cert.link} target="_blank" rel="noopener noreferrer" key={i} className="flex items-center justify-between p-5 md:p-6 bg-slate-900/40 border border-slate-800 rounded-2xl hover:border-sky-400/30 transition-colors">
                     <div>
                       <p className="text-sm md:font-bold">{cert.title}</p>
                       <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest opacity-40 mt-1">{cert.issuer}</p>
                     </div>
+                    <div>
+                      <p className="text-[10px] md:text-[12px] font-bold uppercase tracking-widest opacity-40 mt-1">{cert.code}</p>
+                    </div>
                     <ChevronRight className="opacity-20" size={18} md:size={20} />
-                  </div>
+                  </a>
                 ))}
               </div>
             </motion.div>
