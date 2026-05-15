@@ -75,6 +75,7 @@ const PORTFOLIO_DATA = {
   },
   certifications: [
     { title: "Meta Front-End Specialization", issuer: "Coursera", link: "https://coursera.org/share/ed941dde2dd91796c6d5a2e045b017d9" },
+    { title: "Meta Principles of UX/UI Design", issuer: "Coursera", link: "https://coursera.org/share/60c76829ea6828da99d195102ebdf8c5" },
     { title: "NVIDIA AI for All", issuer: "NVIDIA" },
     { title: "UI/UX Design Diploma", issuer: "Route" },
     { title: "React.js Training", issuer: "ITI" },
